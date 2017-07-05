@@ -57,7 +57,7 @@ class rewardApi extends ControllerBase {
                 //
                 //     }else {
                 //         weixinService.throwMessage('您还没有推广奖励')
-                //     }
+                //     } 
                  }
 
             }else {
