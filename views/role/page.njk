@@ -1,0 +1,29 @@
+{% extends 'layouts/page.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>权限管理</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>角色管理</span>
+</li>
+{% endblock %}
+
+{% block title %}角色管理{% endblock %}
+
+{% block note %}查看所有角色信息{% endblock %}
+
+{% block table %}
+{% from "kits/dtb.njk" import dtb %}
+{{
+    dtb([
+        {value: '名称', name: 'name'},
+        {value: '描述'}
+    ])
+}}
+{% endblock %}
+
+{% block js %}
+<script src="/js/role/page.js"></script>
+{% endblock %}

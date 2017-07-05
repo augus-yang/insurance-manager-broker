@@ -1,0 +1,469 @@
+{% extends 'layouts/detail.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>全民经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/order/page">订单管理</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>订单详情</span>
+</li>
+{% endblock %}
+
+{% block title %}订单详情{% endblock %}
+
+{% block note %}查看订单信息{% endblock %}
+
+{% block tab %}
+<li class="active">
+    <a href="#tab_1" data-toggle="tab">基本信息</a>
+</li>
+<li>
+    <a href="#tab_2" data-toggle="tab">方案</a>
+</li>
+<li>
+    <a href="#tab_3" data-toggle="tab">保险下单</a>
+</li>
+<li>
+    <a href="#tab_4" data-toggle="tab">预约赴港</a>
+</li>
+<li>
+    <a href="#tab_5" data-toggle="tab">上传保单</a>
+</li>
+<li>
+    <a href="#tab_6" data-toggle="tab">补充资料</a>
+</li>
+{% endblock %}
+
+{% block tabContent %}
+<input type="hidden" name="orderId" value="{{order.id}}"/>
+<div class="tab-pane active" id="tab_1">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet green box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>基本信息
+                    </div>
+                    {% if order.status != '获得全民经纪奖金' %}
+                    <div class="actions">
+                        <a href="/order/update/{{order.id}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-edit"></i>更新
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="portlet-body">
+                    <div class="row static-info">
+                        <div class="col-md-5 name">订单号</div>
+                        <div class="col-md-7 value">{{order.id}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">状态</div>
+                        <div class="col-md-7 value">{{order.status}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-pane" id="tab_2">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet red box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>方案
+                    </div>
+                    <div class="actions">
+                        {% if programme %}
+                        <a href="/programme/update/{{programme.id}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-edit"></i>更新
+                        </a>
+                        {% from "kits/audit.njk" import audit %}
+                        {{
+                            audit('/programme/' + programme.id + '/audit', '/order/detail/' + order.id, 'programme')
+                        }}
+                        {% else %}
+                        <a href="/programme/create/{{order.id}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-edit"></i>创建
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    {% if programme %}
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人</div>
+                        <div class="col-md-7 value">{{programme.insurant}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">性别</div>
+                        <div class="col-md-7 value">{{programme.sex}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">出生年月</div>
+                        <div class="col-md-7 value">{{programme.birthday}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">是否吸烟</div>
+                        <div class="col-md-7 value">
+                            {% if programme.smoke == true %} 是 {% endif %}
+                            {% if programme.smoke == false %} 否 {% endif %}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">产品类别</div>
+                        <div class="col-md-7 value">{{programme.product}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">预算范围</div>
+                        <div class="col-md-7 value">{{programme.budget}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">状态</div>
+                        <div class="col-md-7 value">{{programme.status}}</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-pane" id="tab_3">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet yellow box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>保险下单
+                    </div>
+                    <div class="actions">
+                        {% if insuranceOrder %}
+                        <a href="/insuranceOrder/update/{{insuranceOrder.id}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-edit"></i>更新
+                        </a>
+                        {% from "kits/audit.njk" import audit %}
+                        {{
+                            audit('/insuranceOrder/' + insuranceOrder.id + '/audit', '/order/detail/' + order.id, 'insuranceOrder')
+                        }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    {% if insuranceOrder %}
+                    <div class="row static-info">
+                        <div class="col-md-5 name">保险公司</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insuranceCompany}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">产品名称</div>
+                        <div class="col-md-7 value">{{insuranceOrder.productName}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">保费</div>
+                        <div class="col-md-7 value">{{insuranceOrder.dollar}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">付费年限</div>
+                        <div class="col-md-7 value">{{insuranceOrder.paidYears}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">是否吸烟</div>
+                        <div class="col-md-7 value">
+                            {% if insuranceOrder.applicantSmoke == true %} 是 {% endif %}
+                            {% if insuranceOrder.applicantSmoke == false %} 否 {% endif %}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicant}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">性别</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantSex}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">国籍</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantNatinoality}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">年龄</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantAge}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人身份证号码</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantId}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人港澳通行证号码</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantPermit}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人护照号码</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantPassport}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人公司名称</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantCompany}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人公司地址</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantCompanyAddress}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人职务</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantJob}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人职位</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantPosition}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人年薪</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantSalaryYear}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人身份证地址</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantIdAddress}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人收件地址</div>
+                        <div class="col-md-7 value">{{insuranceOrder.applicantAddress}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurant}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人性别</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantSex}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人关系</div>
+                        <div class="col-md-7 value">{{insuranceOrder.relation}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人国籍</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantNatinoality}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人年龄</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantAge}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人身份证号码</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantId}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人港澳通行证号码</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantPermit}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人护照号码</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantPassport}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人公司名称</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantCompany}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人公司地址</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantCompanyAddress}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人职务</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantJob}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人职位</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantPosition}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人年薪</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantSalaryYear}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人身份证地址</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantIdAddress}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人收件地址</div>
+                        <div class="col-md-7 value">{{insuranceOrder.insurantAddress}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人是否吸烟</div>
+                        <div class="col-md-7 value">
+                            {% if insuranceOrder.insurantSmoke == true %} 是 {% endif %}
+                            {% if insuranceOrder.insurantSmoke == false %} 否 {% endif %}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受益人</div>
+                        <div class="col-md-7 value">
+                        {% for item in beneficiaryList %}
+                            {{item.name}}
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受益比例</div>
+                        <div class="col-md-7 value">
+                        {% for item in beneficiaryList %}
+                            {{item.scale}}%
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">预约赴港日期</div>
+                        <div class="col-md-7 value">{{insuranceOrder.hkDate}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">审核状态</div>
+                        <div class="col-md-7 value">{{insuranceOrder.status}}</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-pane" id="tab_4">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet blue box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>预约赴港
+                    </div>
+                    <div class="actions">
+                        {% if appointment %}
+                        {% from "kits/audit.njk" import audit %}
+                        {{
+                            audit('/appointment/' + appointment.id + '/audit', '/order/detail/' + order.id, 'appointment')
+                        }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row static-info">
+                        <div class="col-md-5 name">航班号</div>
+                        <div class="col-md-7 value">{{appointment.flightNumber}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">随行人员数</div>
+                        <div class="col-md-7 value">{{appointment.peoples}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">航班日期</div>
+                        <div class="col-md-7 value">{{appointment.flightDate}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">是否需要香港开户</div>
+                        <div class="col-md-7 value">
+                            {% if appointment.whetherOpenAccount == true %} 是 {% endif %}
+                            {% if appointment.whetherOpenAccount == false %} 否 {% endif %}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">开户类型</div>
+                        <div class="col-md-7 value">{{appointment.openAccountType}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">开户银行</div>
+                        <div class="col-md-7 value">{{appointment.openAccountBank}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">机票订单截图</div>
+                        <div class="col-md-7 value">
+                            {% from 'kits/preview.njk' import preview %}
+                            {{
+                                preview(appointment.flightImg)
+                            }}
+                            {% if bean.flightImgTwo != '' %}
+                            {% from 'kits/preview.njk' import preview %}
+                            {{
+                                preview(appointment.flightImgTwo)
+                            }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">审核状态</div>
+                        <div class="col-md-7 value">{{appointment.status}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-pane" id="tab_5">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet blue box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>上传保单
+                    </div>
+                    <div class="actions">
+                        {% if uploadPolicyList.length > 0 %}
+                        {% from "kits/audit.njk" import audit %}
+                        {{
+                            audit('/uploadPolicy/' + order.id, '/order/detail/' + order.id, 'uploadPolicy')
+                        }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row static-info">
+                        <div class="col-md-5 name">保单号</div>
+                        <div class="col-md-7 value">{{uploadPolicyList[0].policyNumber}}</div>
+                    </div>
+
+                    <div class="row static-info">
+                        <div class="col-md-5 name">已上传保单</div>
+                        <div class="col-md-7 value">
+                            {% for item in uploadPolicyList %}
+
+                                {% from 'kits/preview.njk' import preview %}
+                                {{
+                                    preview(item.img)
+                                }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">状态</div>
+                        <div class="col-md-7 value">{{uploadPolicyList[0].status}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="tab-pane" id="tab_6">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                {% from "kits/dtb.njk" import dtb %}
+                {{
+                dtb([
+                {value: '内容'}
+                ], 'green box')
+                }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="/js/order/detail.js"></script>
+{% endblock %}

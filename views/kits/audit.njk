@@ -1,0 +1,72 @@
+{% macro audit(url, successPath, divId='audit') %}
+<a href="#{{divId}}" data-toggle="modal" class="btn btn-default btn-sm">
+    <i class="fa fa-check">审核</i>
+</a>
+
+<div class="modal fade" id="{{divId}}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" style="color: #333">提示</h4>
+            </div>
+            <div class="modal-body" style="color: #333">是否审核通过?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" id="{{divId}}_auditFail">否</button>
+                <button type="button" class="btn green" id="{{divId}}_auditSuccess">是</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var {{divId}}Audit = function() {
+        var initAuditFail = function() {
+            $("#{{divId}}_auditFail").on('click', function() {
+                $("#{{divId}}_auditFail").attr('disabled', 'disabled');
+                $("#{{divId}}_auditSuccess").attr('disabled', 'disabled');
+                requestKit.put('{{url}}', {
+                    audit: '审核未通过'
+                }, function() {
+                    $("#{{divId}}_auditFail").removeAttr('disabled');
+                    $("#{{divId}}_auditSuccess").removeAttr('disabled');
+                    window.location.href = '{{successPath}}'
+                }, function(message) {
+                    $("#{{divId}}_auditFail").removeAttr('disabled');
+                    $("#{{divId}}_auditSuccess").removeAttr('disabled');
+                    toastrKit.error(message);
+                });
+            });
+        }
+
+        var initAuditSuccess = function() {
+            $("#{{divId}}_auditSuccess").on('click', function() {
+                $("#{{divId}}_auditFail").attr('disabled', 'disabled');
+                $("#{{divId}}_auditSuccess").attr('disabled', 'disabled');
+                requestKit.put('{{url}}', {
+                    audit: '审核通过'
+                }, function() {
+                    $("#{{divId}}_auditFail").removeAttr('disabled');
+                    $("#{{divId}}_auditSuccess").removeAttr('disabled');
+                    window.location.href = '{{successPath}}'
+                }, function(message) {
+                    $("#{{divId}}_auditFail").removeAttr('disabled');
+                    $("#{{divId}}_auditSuccess").removeAttr('disabled');
+                    toastrKit.error(message);
+                });
+            });
+        }
+
+        return {
+            init: function() {
+                initAuditFail();
+                initAuditSuccess();
+            }
+        }
+    }();
+
+    jQuery(document).ready(function() {
+        {{divId}}Audit.init();
+    });
+</script>
+{% endmacro %}

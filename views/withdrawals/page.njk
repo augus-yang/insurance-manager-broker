@@ -1,0 +1,33 @@
+{% extends 'layouts/page.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>全民经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>预约提现</span>
+</li>
+{% endblock %}
+
+{% block title %}预约提现{% endblock %}
+
+{% block note %}查看所有预约提现信息{% endblock %}
+
+{% block table %}
+{% from "kits/dtb.njk" import dtb %}
+{{
+    dtb([
+        {width: '10%', value: '手机号', name: 'mobile'},
+        {value: '保单提现金额'},
+        {value: '推广提现金额'},
+        {value: '银行'},
+        {width: '6%', value: '状态'},
+        {width: '6%', value: '退款状态'}
+    ])
+}}
+{% endblock %}
+
+{% block js %}
+<script src="/js/withdrawals/page.js"></script>
+{% endblock %}

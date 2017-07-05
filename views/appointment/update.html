@@ -1,0 +1,119 @@
+{% extends 'layouts/form.html' %}
+
+{% block breadcrumb %}
+<li>
+    <span>购买保险</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/appointment /page">预约赴港</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>预约赴港更新</span>
+</li>
+{% endblock %}
+
+{% block title %}预约赴港更新{% endblock %}
+
+{% block note %}预约赴港更新{% endblock %}
+
+{% block group %}
+<input type="hidden" name="id" value="{{bean.id}}"/>
+<div class="form-group margin-top-20">
+    <label class="control-label col-md-3">航班号
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="flightNumber" autocomplete="off" value="{{bean.flightNumber}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">随行人员数
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="peoples" autocomplete="off" value="{{bean.peoples}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">航班日期
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="flightDate" autocomplete="off" value="{{bean.flightDate}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">是否需要香港开户
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="whetherOpenAccount" autocomplete="off" value="{{bean.whetherOpenAccount}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">开户类型
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="openAccountType" autocomplete="off" value="{{bean.openAccountType}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">开户银行
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="openAccountBank" autocomplete="off" value="{{bean.openAccountBank}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">机票订单截图
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="flightImg" autocomplete="off" value="{{bean.flightImg}}"/>
+        </div>
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="flightImgTwo" autocomplete="off" value="{{bean.flightImgTwo}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">审核状态
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="status" autocomplete="off" value="{{bean.status}}"/>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/js/appointment/update.js"></script>
+{% endblock %}

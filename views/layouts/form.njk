@@ -1,0 +1,72 @@
+{% extends 'layouts/layout.njk' %}
+
+{% block style %}
+{% block css %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="/index">主页</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        {% block breadcrumb %}{% endblock %}
+    </ul>
+</div>
+
+<h3 class="page-title">{% block title %}{% endblock %}</h3>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="note note-success">
+            <p>{% block note %}{% endblock %}</p>
+        </div>
+        <div class="portlet light portlet-fit portlet-form bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-bubble font-green"></i>
+                    <span class="caption-subject font-green sbold uppercase">表单</span>
+                </div>
+                <div class="actions">
+                    <div class="btn-group">
+                        <button class="btn green" onclick="history.go(-1)">
+                            <i class="fa fa-reply"></i>返回
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <form id="form" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="alert alert-danger display-hide">
+                            <button class="close" data-close="alert"></button>
+                            表单验证失败
+                        </div>
+                        <div class="alert alert-success display-hide">
+                            <button class="close" data-close="alert"></button>
+                            表单验证成功
+                        </div>
+                        {% block group %}{% endblock %}
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button id="submit" type="submit" class="btn green">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% block extra %}{% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="/metronic/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+<script src="/metronic/global/plugins/jquery-validation/js/additional-methods.min.js"></script>
+<script src="/js/kits/formKit.js"></script>
+{% block js %}{% endblock %}
+{% endblock %}

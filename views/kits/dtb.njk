@@ -1,0 +1,169 @@
+{% macro dtb(thead, portletClass='light portlet-fit portlet-datatable bordered') %}
+<link href="/metronic/global/plugins/datatables/datatables.min.css" rel="stylesheet"/>
+<link href="/metronic/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet"/>
+<link href="/metronic/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet"/>
+<link href="/metronic/global/plugins/select2/css/select2.min.css" rel="stylesheet"/>
+<link href="/metronic/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet"/>
+
+<div class="portlet {{portletClass}}">
+    <div class="portlet-title">
+        <div class="caption">
+            {% if portletClass == 'light portlet-fit portlet-datatable bordered' %}
+            <i class="icon-settings font-dark"></i>
+            <span class="caption-subject font-dark sbold uppercase">列表</span>
+            {% else %}
+            <i class="fa fa-cogs"></i>列表
+            {% endif %}
+        </div>
+        <div class="actions">
+            {% if portletClass == 'light portlet-fit portlet-datatable bordered' %}
+            <div class="btn-group">
+                <button id="create" class="btn green">
+                    <i class="fa fa-plus"></i>创建
+                </button>
+            </div>
+            {% else %}
+            <a id="create" href="javascript:void(0)" class="btn btn-default btn-sm">
+                <i class="fa fa-edit"></i>创建
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div class="table-container">
+            <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_ajax">
+                <thead>
+                <tr role="row" class="heading">
+                    <th width="2%">
+                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                            <input type="checkbox" class="group-checkable"/>
+                            <span></span>
+                        </label>
+                    </th>
+                    {% for item in thead %}
+                    {% if item.width %}
+                    <th width="{{item.width}}">{{item.value}}</th>
+                    {% else %}
+                    <th>{{item.value}}</th>
+                    {% endif %}
+                    {% endfor %}
+                    <th width="10%">创建时间</th>
+                    <th width="10%">更新时间</th>
+                    <th width="15%">操作</th>
+                </tr>
+                <tr role="row" class="filter">
+                    <td></td>
+                    {% for item in thead %}
+                    {% if item.type == 'select' %}
+                    <td>
+                        <select class="form-control form-filter" name="{{item.name}}">
+                            <option value="">请选择</option>
+                            {% for bean in item.selectList %}
+                            <option value="{{bean[item.selectOptions[0]]}}">{{bean[item.selectOptions[1]]}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    {% elif item.name %}
+                    <td>
+                        <input type="text" class="form-control form-filter input-sm" name="{{item.name}}"/>
+                    </td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    {% endfor %}
+                    <td>
+                        <div class="input-group date date-picker margin-bottom-5" data-date-format="yyyy-mm-dd">
+                            <input type="text" class="form-control form-filter input-sm" readonly
+                                   name="createdAtFrom" placeholder="From">
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm default" type="button">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div class="input-group date date-picker" data-date-format="yyyy-mm-dd">
+                            <input type="text" class="form-control form-filter input-sm" readonly
+                                   name="createdAtTo" placeholder="To">
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm default" type="button">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group date date-picker margin-bottom-5" data-date-format="yyyy-mm-dd">
+                            <input type="text" class="form-control form-filter input-sm" readonly
+                                   name="updatedAtFrom" placeholder="From">
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm default" type="button">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div class="input-group date date-picker" data-date-format="yyyy-mm-dd">
+                            <input type="text" class="form-control form-filter input-sm" readonly
+                                   name="updatedAtTo" placeholder="To">
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm default" type="button">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="margin-bottom-5">
+                            <button class="btn btn-sm green btn-outline filter-submit margin-bottom">
+                                <i class="fa fa-search"></i>搜索
+                            </button>
+                        </div>
+                        <button class="btn btn-sm red btn-outline filter-cancel">
+                            <i class="fa fa-times"></i>重置
+                        </button>
+                    </td>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="del" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body">是否确认删除?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn green" id="confirm">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/metronic/global/scripts/datatable.js"></script>
+<script src="/metronic/global/plugins/datatables/datatables.min.js"></script>
+<script src="/metronic/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js"></script>
+<script src="/metronic/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="/metronic/global/plugins/select2/js/select2.full.min.js"></script>
+<script src="/js/kits/pageKit.js"></script>
+<script>
+    var Dtb = function () {
+        var initSelect = function () {
+            $('select').select2();
+        }
+        return {
+            init: function () {
+                initSelect();
+            }
+        }
+    }();
+    jQuery(document).ready(function () {
+        Dtb.init();
+    });
+</script>
+{% endmacro %}

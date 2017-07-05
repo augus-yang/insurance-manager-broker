@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <title>登录</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet"/>
+    <link href="/metronic/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/metronic/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet"/>
+    <link href="/metronic/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/metronic/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet"/>
+    <link href="/metronic/global/css/components.min.css" rel="stylesheet" id="style_components"/>
+    <link href="/metronic/global/css/plugins.min.css" rel="stylesheet"/>
+    <link href="/metronic/pages/css/login-4.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="/favicon.png"/>
+</head>
+<body class="login">
+<!-- logo -->
+<div class="logo">
+    <a href="javascript:void(0)">
+        <img src="/metronic/pages/img/logo-big.png"/>
+    </a>
+</div>
+<div class="content">
+    <!-- login -->
+    <form class="login-form">
+        <h3 class="form-title">Login</h3>
+        <div class="alert alert-danger display-hide">
+            <button class="close" data-close="alert"></button>
+            <span>请输入你的用户名或密码</span>
+        </div>
+        <div class="form-group">
+            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+            <label class="control-label visible-ie8 visible-ie9">用户名</label>
+            <div class="input-icon">
+                <i class="fa fa-user"></i>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名"
+                       name="username"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">密码</label>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码"
+                       name="password"/>
+            </div>
+        </div>
+        <div class="form-actions">
+            <label class="rememberme mt-checkbox mt-checkbox-outline">
+                <input type="checkbox" name="remember" value="1"/>记住我
+                <span></span>
+            </label>
+            <button type="submit" class="btn green pull-right">登录</button>
+        </div>
+        <div class="create-account">
+            <p>没有账户?&nbsp;
+                <a href="javascript:void(0)" id="register-btn">创建新账户</a>
+            </p>
+        </div>
+    </form>
+    <!-- register -->
+    <form class="register-form">
+        <h3>注册</h3>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">用户名</label>
+            <div class="input-icon">
+                <i class="fa fa-user"></i>
+                <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名"
+                       name="username"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">密码</label>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password"
+                       placeholder="密码" name="password"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">确认密码</label>
+            <div class="controls">
+                <div class="input-icon">
+                    <i class="fa fa-check"></i>
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off"
+                           placeholder="确认密码" name="rpassword"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button id="register-back-btn" type="button" class="btn red btn-outline">返回</button>
+            <button type="submit" id="register-submit-btn" class="btn green pull-right">注册</button>
+        </div>
+    </form>
+</div>
+<!-- copyright -->
+<div class="copyright"> 2016 &copy; Admin</div>
+<!-- script -->
+<!--[if lt IE 9]>
+<script src="/metronic/global/plugins/respond.min.js"></script>
+<script src="/metronic/global/plugins/excanvas.min.js"></script>
+<![endif]-->
+<script src="/metronic/global/plugins/jquery.min.js"></script>
+<script src="/metronic/global/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/metronic/global/plugins/js.cookie.min.js"></script>
+<script src="/metronic/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/metronic/global/plugins/jquery.blockui.min.js"></script>
+<script src="/metronic/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="/metronic/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+<script src="/metronic/global/plugins/jquery-validation/js/additional-methods.min.js"></script>
+<script src="/metronic/global/plugins/backstretch/jquery.backstretch.min.js"></script>
+<script src="/metronic/global/plugins/bootstrap-toastr/toastr.min.js"></script>
+<script src="/metronic/global/scripts/app.js"></script>
+<script src="/js/kits/toastrKit.js"></script>
+<script src="/js/kits/requestKit.js"></script>
+<script src="/js/login.js"></script>
+</body>
+</html>

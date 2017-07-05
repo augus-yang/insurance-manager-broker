@@ -1,0 +1,70 @@
+{% extends 'layouts/form.njk' %}
+
+{% block css %}
+<link href="/metronic/global/plugins/select2/css/select2.min.css" rel="stylesheet"/>
+<link href="/metronic/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block breadcrumb %}
+<li>
+    <span>全民经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/order/page">订单</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>订单更新</span>
+</li>
+{% endblock %}
+
+{% block title %}订单更新{% endblock %}
+
+{% block note %}更新订单{% endblock %}
+
+{% block group %}
+<input type="hidden" name="id" value="{{bean.id}}"/>
+<div class="form-group">
+    <label class="control-label col-md-3">状态
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <select class="form-control" name="status" id="statusType">
+            <option value="">请选择</option>
+            {% for item in list %}
+            <option value="{{item}}" {%if item == bean.status %}selected{% endif %}>{{item}}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+<div id="mayHide" style="display:none">
+<div class="form-group">
+    <label class="control-label col-md-3">保单奖励
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="policyMoney" autocomplete="off"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">推广奖励
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="extendMoney" autocomplete="off"/>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/metronic/global/plugins/select2/js/select2.full.min.js"></script>
+<script src="/js/order/update.js"></script>
+{% endblock %}

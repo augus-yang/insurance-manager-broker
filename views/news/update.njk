@@ -1,0 +1,77 @@
+{% extends 'layouts/form.njk' %}
+
+{% block css %}
+<link href="/metronic/global/plugins/select2/css/select2.min.css" rel="stylesheet"/>
+<link href="/metronic/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block breadcrumb %}
+<li>
+    <span>全民经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/news/page">最新信息</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>信息更新</span>
+</li>
+{% endblock %}
+
+{% block title %}信息更新{% endblock %}
+
+{% block note %}信息更新{% endblock %}
+
+{% block group %}
+<input type="hidden" name="newsId" value="{{bean.id}}"/>
+<div class="form-group">
+    <label class="control-label col-md-3">标题
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="total" autocomplete="off" value="{{bean.total}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">手机号
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="mobile" autocomplete="off" value="{{user.mobile}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">内容
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="content" autocomplete="off" value="{{bean.content}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">状态
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="status" autocomplete="off" value="{{bean.status}}"/>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/metronic/global/plugins/select2/js/select2.full.min.js"></script>
+<script src="/js/news/update.js"></script>
+{% endblock %}

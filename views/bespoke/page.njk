@@ -1,0 +1,29 @@
+{% extends 'layouts/page.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>保单无忧</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>预约服务</span>
+</li>
+{% endblock %}
+
+{% block title %}预约服务{% endblock %}
+
+{% block note %}查看所有预约服务信息{% endblock %}
+
+{% block table %}
+{% from "kits/dtb.njk" import dtb %}
+{{
+    dtb([
+        {value: '手机号', name: 'mobile'},
+        {value: '预约内容'}
+    ])
+}}
+{% endblock %}
+
+{% block js %}
+<script src="/js/bespoke/page.js"></script>
+{% endblock %}

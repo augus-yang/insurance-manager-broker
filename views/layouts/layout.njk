@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <title>Admin</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet"/>
+    <link href="/metronic/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/metronic/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet"/>
+    <link href="/metronic/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/metronic/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet"/>
+    <link href="/metronic/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet"/>
+    <link href="/metronic/global/css/components.min.css" rel="stylesheet" id="style_components"/>
+    <link href="/metronic/global/css/plugins.min.css" rel="stylesheet"/>
+    <link href="/metronic/layouts/layout/css/layout.min.css" rel="stylesheet"/>
+    <link href="/metronic/layouts/layout/css/themes/default.min.css" rel="stylesheet" id="style_color"/>
+    {% block style %}{% endblock %}
+    <script src="/metronic/global/plugins/jquery.min.js"></script>
+    <link rel="shortcut icon" href="/favicon.png"/>
+</head>
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+<!-- header -->
+<div class="page-header navbar navbar-fixed-top">
+    <div class="page-header-inner ">
+        <!-- logo -->
+        <div class="page-logo">
+            <a href="/index">
+                <img src="/metronic/layouts/layout/img/logo.png" alt="logo" class="logo-default"/>
+            </a>
+            <div class="menu-toggler sidebar-toggler">
+                <span></span>
+            </div>
+        </div>
+        <a href="javascript:void(0)" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse">
+            <span></span>
+        </a>
+        <div class="top-menu">
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown dropdown-user">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                       data-close-others="true">
+                        <span class="username username-hide-on-mobile">{{login.user.name}}</span>
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-default">
+                        <li>
+                            <a id="loginOut" href="javascript:void(0)">
+                                <i class="icon-key"></i>注销
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<!-- container -->
+<div class="page-container">
+    <!-- sidebar -->
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            <ul class="page-sidebar-menu  page-header-fixed " data-keep-expanded="false" data-auto-scroll="true"
+                data-slide-speed="200" style="padding-top: 20px">
+                <li id="indexLi" class="nav-item start active open">
+                    <a href="/index" class="nav-link">
+                        <i class="icon-home"></i>
+                        <span class="title">主页</span>
+                    </a>
+                </li>
+                <li class="heading">
+                    <h3 class="uppercase">功能</h3>
+                </li>
+
+                {% if 'resourceManager' in login.resources
+                    or 'roleManager' in login.resources
+                    or 'userManager' in login.resources %}
+                <li id="privilegeLi" class="nav-item">
+                    <a href="javascript:void(0)" class="nav-link nav-toggle">
+                        <i class="icon-layers"></i>
+                        <span class="title">权限管理</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        {% if 'resourceManager' in login.resources %}
+                        <li class="nav-item">
+                            <a href="/resource/page" class="nav-link">
+                                <span class="title">资源管理</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if 'roleManager' in login.resources %}
+                        <li class="nav-item">
+                            <a href="/role/page" class="nav-link">
+                                <span class="title">角色管理</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if 'userManager' in login.resources %}
+                        <li class="nav-item">
+                            <a href="/user/page" class="nav-link">
+                                <span class="title">用户管理</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% endif %}
+
+                <li id="policyLi" class="nav-item">
+                    <a href="javascript:void(0)" class="nav-link nav-toggle">
+                        <i class="icon-layers"></i>
+                        <span class="title">保单无忧</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item">
+                            <a href="/policy/page" class="nav-link">
+                                <span class="title">保单托管</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/bespoke/page" class="nav-link">
+                                <span class="title">预约服务</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li id="insuranceLi" class="nav-item">
+                    <a href="javascript:void(0)" class="nav-link nav-toggle">
+                        <i class="icon-layers"></i>
+                        <span class="title">全民经纪</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item">
+                            <a href="/order/page" class="nav-link">
+                                <span class="title">订单管理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/news/page" class="nav-link">
+                                <span class="title">最新信息</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/withdrawals/page" class="nav-link">
+                                <span class="title">预约提现</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/reward/page" class="nav-link">
+                                <span class="title">用户奖励</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="theme-panel hidden-xs hidden-sm">
+                <div class="toggler"></div>
+                <div class="toggler-close"></div>
+                <div class="theme-options">
+                    <div class="theme-option theme-colors clearfix">
+                        <span>THEME COLOR</span>
+                        <ul>
+                            <li class="color-default current tooltips" data-style="default" data-container="body"
+                                data-original-title="Default"></li>
+                            <li class="color-darkblue tooltips" data-style="darkblue" data-container="body"
+                                data-original-title="Dark Blue"></li>
+                            <li class="color-blue tooltips" data-style="blue" data-container="body"
+                                data-original-title="Blue"></li>
+                            <li class="color-grey tooltips" data-style="grey" data-container="body"
+                                data-original-title="Grey"></li>
+                            <li class="color-light tooltips" data-style="light" data-container="body"
+                                data-original-title="Light"></li>
+                            <li class="color-light2 tooltips" data-style="light2" data-container="body" data-html="true"
+                                data-original-title="Light 2"></li>
+                        </ul>
+                    </div>
+                    <div class="theme-option">
+                        <span>Theme Style</span>
+                        <select class="layout-style-option form-control input-sm">
+                            <option value="square" selected="selected">Square corners</option>
+                            <option value="rounded">Rounded corners</option>
+                        </select>
+                    </div>
+                    <div class="theme-option">
+                        <span>Layout</span>
+                        <select class="layout-option form-control input-sm">
+                            <option value="fluid" selected="selected">Fluid</option>
+                            <option value="boxed">Boxed</option>
+                        </select>
+                    </div>
+                    <div class="theme-option">
+                        <span>Header</span>
+                        <select class="page-header-option form-control input-sm">
+                            <option value="fixed" selected="selected">Fixed</option>
+                            <option value="default">Default</option>
+                        </select>
+                    </div>
+                    <div class="theme-option">
+                        <span>Top Menu Dropdown</span>
+                        <select class="page-header-top-dropdown-style-option form-control input-sm">
+                            <option value="light" selected="selected">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                    <div class="theme-option">
+                        <span>Sidebar Mode</span>
+                        <select class="sidebar-option form-control input-sm">
+                            <option value="fixed">Fixed</option>
+                            <option value="default" selected="selected">Default</option>
+                        </select>
+                    </div>
+                    <div class="theme-option">
+                        <span>Sidebar Menu</span>
+                        <select class="sidebar-menu-option form-control input-sm">
+                            <option value="accordion" selected="selected">Accordion</option>
+                            <option value="hover">Hover</option>
+                        </select>
+                    </div>
+                    <div class="theme-option">
+                        <span>Sidebar Style</span>
+                        <select class="sidebar-style-option form-control input-sm">
+                            <option value="default" selected="selected">Default</option>
+                            <option value="light">Light</option>
+                        </select>
+                    </div>
+                    <div class="theme-option">
+                        <span>Sidebar Position</span>
+                        <select class="sidebar-pos-option form-control input-sm">
+                            <option value="left" selected="selected">Left</option>
+                            <option value="right">Right</option>
+                        </select>
+                    </div>
+                    <div class="theme-option">
+                        <span>Footer</span>
+                        <select class="page-footer-option form-control input-sm">
+                            <option value="fixed">Fixed</option>
+                            <option value="default" selected="selected">Default</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<div class="page-footer">
+    <div class="page-footer-inner">2014 &copy; Admin</div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<!-- script -->
+<!--[if lt IE 9]>
+<script src="/metronic/global/plugins/respond.min.js"></script>
+<script src="/metronic/global/plugins/excanvas.min.js"></script>
+<![endif]-->
+<script src="/metronic/global/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="/metronic/global/plugins/js.cookie.min.js"></script>
+<script src="/metronic/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+<script src="/metronic/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/metronic/global/plugins/jquery.blockui.min.js"></script>
+<script src="/metronic/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="/metronic/global/plugins/bootstrap-toastr/toastr.min.js"></script>
+<script src="/metronic/global/scripts/app.js"></script>
+<script src="/metronic/layouts/layout/scripts/layout.min.js"></script>
+<script src="/metronic/layouts/layout/scripts/demo.min.js"></script>
+<script src="/js/kits/toastrKit.js"></script>
+<script src="/js/kits/requestKit.js"></script>
+{% block script %}{% endblock %}
+<script>
+    jQuery(document).ready(function () {
+        $("#loginOut").on('click', function(){
+            requestKit.del('/login', function(){
+                window.location.href = '/login'
+            });
+        });
+    });
+</script>
+</body>
+</html>

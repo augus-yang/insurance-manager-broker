@@ -1,0 +1,23 @@
+{% extends 'layouts/detail.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>全民经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/reward/page">奖励</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>奖励</span>
+</li>
+{% endblock %}
+
+{% block title %}奖励{% endblock %}
+
+{% block note %}查看奖励信息{% endblock %}
+
+
+{% from "order/detail.njk" import detail %}
+

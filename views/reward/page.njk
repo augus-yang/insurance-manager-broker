@@ -1,0 +1,32 @@
+{% extends 'layouts/page.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>全民经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>用户奖励</span>
+</li>
+{% endblock %}
+
+{% block title %}奖励{% endblock %}
+
+{% block note %}查看所有奖励信息{% endblock %}
+
+{% block table %}
+{% from "kits/dtb.njk" import dtb %}
+{{
+    dtb([
+        {width: '20%', value: '订单号', name: 'orderId'},
+        {value: '手机号'},
+        {value: '奖励金额'},
+        {value: '奖励类型'},
+        {value: '奖励账户'}
+    ])
+}}
+{% endblock %}
+
+{% block js %}
+<script src="/js/reward/page.js"></script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'layouts/form.njk' %}
+
+{% block css %}
+<link href="/metronic/global/plugins/jquery-multi-select/css/multi-select.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block breadcrumb %}
+<li>
+    <span>权限管理</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/role/page">角色管理</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/role/detail/{{roleId}}">角色详情</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>角色资源关系创建</span>
+</li>
+{% endblock %}
+
+{% block title %}角色资源关系创建{% endblock %}
+
+{% block note %}创建角色资源关系{% endblock %}
+
+{% block group %}
+<input type="hidden" name="roleId" value="{{roleId}}"/>
+<div class="form-group margin-top-20">
+    <label class="control-label col-md-3">可选资源</label>
+    <div class="col-md-9">
+        <select multiple="multiple" class="multi-select" name="resourceIds">
+            {% for item in list %}
+            <option value="{{item.id}}">{{item.describe}}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/metronic/global/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script src="/js/roleResource/create.js"></script>
+{% endblock %}

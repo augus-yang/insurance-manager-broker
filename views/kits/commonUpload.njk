@@ -1,0 +1,52 @@
+{% macro commonUpload(url, inputName='fileInput') %}
+<link href="/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+
+<input type="hidden" class="form-control" name="{{inputName}}" autocomplete="off"/>
+<div class="fileinput fileinput-new" data-provides="fileinput">
+    <div class="input-group input-large">
+        <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+            <i class="fa fa-file fileinput-exists"></i>&nbsp;
+            <span class="fileinput-filename"> </span>
+        </div>
+        <span class="input-group-addon btn default btn-file">
+            <span class="fileinput-new"> Select file </span>
+            <span class="fileinput-exists"> Change </span>
+            <input id="fileupload" type="file" name="upload" data-url="{{url}}"> </span>
+            <a href="javascript:void(0);" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+    </div>
+</div>
+
+<script src="/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
+<script src="/metronic/global/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/metronic/global/plugins/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="/metronic/global/plugins/jquery-file-upload/js/jquery.fileupload.js"></script>
+<script>
+    var CommonUpload = function() {
+        var initFileInput = function() {
+            $('.fileinput').on('clear.bs.fileinput', function() {
+                $('[name={{inputName}}]').val('');
+            });
+        }
+
+        var initFileUpload = function() {
+            $('#fileupload').fileupload({
+                dataType: 'json',
+                done: function(e, data) {
+                    $('[name={{inputName}}]').val(data.result.data.fileName);
+                }
+            });
+        }
+
+        return {
+            init: function() {
+                initFileInput();
+                initFileUpload();
+            }
+        }
+    }();
+
+    jQuery(document).ready(function() {
+        CommonUpload.init();
+    });
+</script>
+{% endmacro %}

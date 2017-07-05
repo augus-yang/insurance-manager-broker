@@ -1,0 +1,18 @@
+{
+  "appenders": [
+    {
+      "category": "file",
+      "type": "dateFile",
+      "filename": "logs/insurance-manager",
+      "alwaysIncludePattern": true,
+      "pattern": "-yyyy-MM-dd.log"
+    },
+    {
+      "type": "console"
+    }
+  ],
+  "replaceConsole": true,
+  "levels": {
+    "file": "ALL"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "database": "frank",
+  "username": "root",
+  "password": "root",
+  "host": "192.168.2.110",
+  "port": 3306,
+  "dialect": "mysql",
+  "timezone": "+08:00"
+}

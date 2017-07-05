@@ -1,0 +1,67 @@
+{% extends 'layouts/form.njk' %}
+
+{% block css %}
+<link href="/metronic/global/plugins/select2/css/select2.min.css" rel="stylesheet"/>
+<link href="/metronic/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block breadcrumb %}
+<li>
+    <span>权限管理</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/user/page">用户管理</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>用户创建</span>
+</li>
+{% endblock %}
+
+{% block title %}用户创建{% endblock %}
+
+{% block note %}创建用户{% endblock %}
+
+{% block group %}
+<div class="form-group  margin-top-20">
+    <label class="control-label col-md-3">名称
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="name" autocomplete="off"/>
+        </div>
+    </div>
+</div>
+<div class="form-group  margin-top-20">
+    <label class="control-label col-md-3">手机号
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="mobile" autocomplete="off"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">角色
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <select class="form-control" name="roleId">
+            <option value="">请选择</option>
+            {% for bean in list %}
+            <option value="{{bean.id}}">{{bean.describe}}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/metronic/global/plugins/select2/js/select2.full.min.js"></script>
+<script src="/js/user/create.js"></script>
+{% endblock %}

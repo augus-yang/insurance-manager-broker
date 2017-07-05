@@ -1,0 +1,30 @@
+{% extends 'layouts/page.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>权限管理</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>用户管理</span>
+</li>
+{% endblock %}
+
+{% block title %}用户管理{% endblock %}
+
+{% block note %}查看所有用户信息{% endblock %}
+
+{% block table %}
+{% from "kits/dtb.njk" import dtb %}
+{{
+    dtb([
+        {value: '名称', name: 'name'},
+        {value: '手机号', name: 'mobile'},
+        {value: '角色', name: 'roleId', type: 'select', selectList: list, selectOptions:['id', 'describe']}
+    ])
+}}
+{% endblock %}
+
+{% block js %}
+<script src="/js/user/page.js"></script>
+{% endblock %}

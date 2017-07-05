@@ -1,0 +1,9 @@
+[
+  "/test/*",
+  "/weixin/*",
+  "/weixinExtend/*",
+  "/login/*",
+  "/captcha/*",
+  "/constant/*",
+  "/download/*"
+]

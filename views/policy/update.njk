@@ -1,0 +1,93 @@
+{% extends 'layouts/form.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>保单无忧</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/policy/page">保单托管</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>保单托管更新</span>
+</li>
+{% endblock %}
+
+{% block title %}保单托管更新{% endblock %}
+
+{% block note %}保单托管更新{% endblock %}
+
+{% block group %}
+<input type="hidden" name="id" value="{{bean.id}}"/>
+<div class="form-group margin-top-20">
+    <label class="control-label col-md-3">保单号
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="policyNumber" autocomplete="off" value="{{bean.policyNumber}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicant" autocomplete="off" value="{{bean.applicant}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurant" autocomplete="off" value="{{bean.insurant}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">联系方式
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="mobile" autocomplete="off" value="{{bean.mobile}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">保险公司
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insuranceCompany" autocomplete="off" value="{{bean.insuranceCompany}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">产品名称
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="productName" autocomplete="off" value="{{bean.productName}}"/>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/js/policy/update.js"></script>
+{% endblock %}

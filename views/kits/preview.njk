@@ -1,0 +1,36 @@
+{% macro preview(img, width='200px') %}
+<div class="mt-element-overlay" style="width:{{width}};margin-bottom: 20px;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mt-overlay-1">
+                <img src="{{img}}"/>
+                <div class="mt-overlay">
+                    <ul class="mt-info">
+                        <li>
+                            <a class="btn default btn-outline" data-toggle="modal" href="#preview_{{img | replace("/", "_") | replace("-", "_") | replace(".", "_")}}">
+                                <i class="icon-magnifier"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="preview_{{img | replace("/", "_") | replace("-", "_") | replace(".", "_")}}" class="modal fade modal-scroll" tabindex="-1" data-replace="true">
+    <div class="modal-dialog" style="width: 800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">预览</h4>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <img src="{{img}}" style="max-width: 700px"> </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn dark btn-outline">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}

@@ -1,0 +1,66 @@
+{% extends 'layouts/form.njk' %}
+
+{% block css %}
+<link href="/metronic/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block breadcrumb %}
+<li>
+    <span>全名经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/news/page">最新信息</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>最新信息创建</span>
+</li>
+{% endblock %}
+
+{% block title %}最新信息创建{% endblock %}
+
+{% block note %}最新信息创建{% endblock %}
+
+{% block group %}
+<div class="form-group  margin-top-20">
+    <label class="control-label col-md-3">标题
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+         <input type="text" class="form-control" name="total" autocomplete="off"/>
+    </div>
+</div>
+<div class="form-group  margin-top-20">
+    <label class="control-label col-md-3">内容
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <textarea name="content" style="width:100%; height:100px; resize:none;"></textarea>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">手机号
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="mobile" autocomplete="off"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">附件</label>
+    <div class="col-md-3">
+        {% from "kits/commonUpload.njk" import commonUpload %}
+        {{
+            commonUpload('/api/inner/upload', 'enclosure')
+        }}
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/js/news/create.js"></script>
+{% endblock %}

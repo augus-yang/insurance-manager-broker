@@ -1,0 +1,33 @@
+{% extends 'layouts/layout.njk' %}
+
+{% block style %}
+{% block css %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <a href="/index">主页</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        {% block breadcrumb %}{% endblock %}
+    </ul>
+</div>
+
+<h3 class="page-title">{% block title %}{% endblock %}</h3>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="note note-success">
+            <p>{% block note %}{% endblock %}</p>
+        </div>
+        {% block table %}{% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="/js/kits/pageKit.js"></script>
+{% block js %}{% endblock %}
+{% endblock %}

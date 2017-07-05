@@ -1,0 +1,72 @@
+{% extends 'layouts/detail.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>全民经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/withdrawals/page">预约提现</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>预约提现</span>
+</li>
+{% endblock %}
+
+{% block title %}预约提现{% endblock %}
+
+{% block note %}查看预约提现信息{% endblock %}
+
+{% block tab %}
+<li class="active">
+    <a href="#tab_1" data-toggle="tab">内容</a>
+</li>
+{% endblock %}
+
+{% block tabContent %}
+<input type="hidden" name="userId" value="{{bean.account.userId}}"/>
+<div class="tab-pane active" id="tab_1">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet green box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>详细内容
+                    </div>
+                    {% if bean.status == '审核中' %}
+                    <div class="actions">
+                        {% from "kits/audit.njk" import audit %}
+                        {{
+                            audit('/withdrawals/' + bean.id + '/' + bean.account.userId + '/audit', '/withdrawals/page')
+                        }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="portlet-body">
+                    <div class="row static-info">
+                        <div class="col-md-5 name">手机号</div>
+                        <div class="col-md-7 value">{{bean.account.user.mobile}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">保单提现金额</div>
+                        <div class="col-md-7 value">{{bean.policyMoney}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">推广提现金额</div>
+                        <div class="col-md-7 value">{{bean.extendMoney}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">银行</div>
+                        <div class="col-md-7 value">{{bean.bank.openAccountBank}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">审核状态</div>
+                        <div class="col-md-7 value">{{bean.status}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

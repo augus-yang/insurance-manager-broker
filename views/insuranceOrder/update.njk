@@ -1,0 +1,466 @@
+{% extends 'layouts/form.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>全民经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/order/page">订单管理</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>保险订单更新</span>
+</li>
+{% endblock %}
+
+{% block title %}保险订单更新{% endblock %}
+
+{% block note %}更新保险订单{% endblock %}
+
+{% block group %}
+<input type="hidden" name="id" value="{{bean.id}}"/>
+<input type="hidden" name="orderId" value="{{bean.orderId}}"/>
+<div class="form-group margin-top-20">
+    <label class="control-label col-md-3">保险公司
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insuranceCompany" autocomplete="off" value="{{bean.insuranceCompany}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">产品名称
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="productName" autocomplete="off" value="{{bean.productName}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">保费
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="dollar" autocomplete="off" value="{{bean.dollar}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">付费年限
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="paidYears" autocomplete="off" value="{{bean.paidYears}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人是否吸烟
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select class="form-control form-filter" name="applicantSmoke">
+                <option value="true" {%if true == bean.applicantSmoke %} selected="selected" {% endif %}>是</option>
+                <option value="false" {%if false == bean.applicantSmoke %} selected="selected" {% endif %}>否</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicant" autocomplete="off" value="{{bean.applicant}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人性别
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select class="form-control form-filter" name="applicantSex">
+                {% for item in constant.sexType %}
+                <option value="{{item}}" {%if item == bean.applicantSex %} selected="selected" {% endif %}>{{item}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人国籍
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select class="form-control form-filter" name="applicantNatinoality">
+                {% for item in constant.nationalityType %}
+                <option value="{{item}}" {%if item == bean.applicantNatinoality %} selected="selected" {% endif %}>{{item}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人年龄
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicantAge" autocomplete="off" value="{{bean.applicantAge}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人身份证号码
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicantId" autocomplete="off" value="{{bean.applicantId}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人港澳通行证号码
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicantPermit" autocomplete="off" value="{{bean.applicantPermit}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人护照号码
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicantPassport" autocomplete="off" value="{{bean.applicantPassport}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人公司名称
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicantCompany" autocomplete="off" value="{{bean.applicantCompany}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人公司地址
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicantCompanyAddress" autocomplete="off" value="{{bean.applicantCompanyAddress}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人职务
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicantJob" autocomplete="off" value="{{bean.applicantJob}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人职位
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicantPosition" autocomplete="off" value="{{bean.applicantPosition}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人年薪
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicantSalaryYear" autocomplete="off" value="{{bean.applicantSalaryYear}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人身份证地址
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicantIdAddress" autocomplete="off" value="{{bean.applicantIdAddress}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">投保人收件地址
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="applicantAddress" autocomplete="off" value="{{bean.applicantAddress}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurant" autocomplete="off" value="{{bean.insurant}}"/>
+        </div>
+    </div>
+</div>
+<div id="mayHide">
+<div class="form-group">
+    <label class="control-label col-md-3">受保人性别
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select class="form-control form-filter" name="insurantSex">
+                {% for item in constant.sexType %}
+                <option value="{{item}}" {%if item == bean.insurantSex %} selected="selected" {% endif %}>{{item}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人关系
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select class="form-control form-filter" name="relation">
+                {% for item in constant.relationType %}
+                <option value="{{item}}" {%if item == bean.relation %} selected="selected" {% endif %}>{{item}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">国籍
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select class="form-control form-filter" name="insurantNatinoality">
+                {% for item in constant.nationalityType %}
+                <option value="{{item}}" {%if item == bean.insurantNatinoality %} selected="selected" {% endif %}>{{item}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人年龄
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurantAge" autocomplete="off" value="{{bean.insurantAge}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人身份证号码
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurantId" autocomplete="off" value="{{bean.insurantId}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人港澳通行证号码
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurantPermit" autocomplete="off" value="{{bean.insurantPermit}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人护照号码
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurantPassport" autocomplete="off" value="{{bean.insurantPassport}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人公司名称
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurantCompany" autocomplete="off" value="{{bean.insurantCompany}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人公司地址
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurantCompanyAddress" autocomplete="off" value="{{bean.insurantCompanyAddress}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人职务
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurantJob" autocomplete="off" value="{{bean.insurantJob}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人职位
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurantPosition" autocomplete="off" value="{{bean.insurantPosition}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人年薪
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurantSalaryYear" autocomplete="off" value="{{bean.insurantSalaryYear}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人身份证地址
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurantIdAddress" autocomplete="off" value="{{bean.insurantIdAddress}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人收件地址
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurantAddress" autocomplete="off" value="{{bean.insurantAddress}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受保人是否吸烟
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select class="form-control form-filter" name="insurantSmoke">
+                <option value="true" {%if true == bean.insurantSmoke %} selected="selected" {% endif %}>是</option>
+                <option value="false" {%if false == bean.insurantSmoke %} selected="selected" {% endif %}>否</option>
+            </select>
+        </div>
+    </div>
+</div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">预约赴港日期
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="hkDate" autocomplete="off" value="{{bean.hkDate}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受益人
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-9">
+        {% from "kits/dtb.njk" import dtb %}
+        {{
+            dtb([
+                {value: '受益人', name: 'name'},
+                {value: '受益比例'}
+            ])
+        }}
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/js/insuranceOrder/update.js"></script>
+{% endblock %}

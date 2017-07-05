@@ -1,0 +1,112 @@
+{% extends 'layouts/form.njk' %}
+
+{% block css %}
+<link href="/metronic/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block breadcrumb %}
+<li>
+    <span>全民经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/order/page">订单管理</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>方案更新</span>
+</li>
+{% endblock %}
+
+{% block title %}方案更新{% endblock %}
+
+{% block note %}更新方案{% endblock %}
+
+{% block group %}
+<input type="hidden" name="id" value="{{bean.id}}"/>
+<input type="hidden" name="orderId" value="{{bean.orderId}}"/>
+<div class="form-group  margin-top-20">
+    <label class="control-label col-md-3">受保人
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="insurant" autocomplete="off" value="{{bean.insurant}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">性别
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select class="form-control form-filter" name="sex">
+                {% for item in list.sexType %}
+                <option value="{{item}}" {%if item == bean.sex %} selected="selected" {% endif %}>{{item}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">出生年月
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-3">
+        <input class="form-control form-control-inline input-medium date-picker" data-date-format="yyyy-mm-dd" size="16" type="text" value="{{bean.birthday}}" name="birthday"/>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-3">是否吸烟
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select class="form-control form-filter" name="smoke">
+                <option value="true" {% if bean.smoke == true %}selected="selected"{% endif %}>是</option>
+                <option value="false" {% if bean.smoke == false %}selected="selected"{% endif %}>否</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">产品类别
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select class="form-control form-filter" name="product">
+                {% for item in list.productType %}
+                <option value="{{item}}" {%if item == bean.product %} selected="selected" {% endif %}>{{item}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">预算范围
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <select class="form-control form-filter" name="budget">
+                {% for item in list.budgetType %}
+                <option value="{{item}}" {%if item == bean.budget %} selected="selected" {% endif %}>{{item}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/metronic/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="/js/programme/update.js"></script>
+{% endblock %}

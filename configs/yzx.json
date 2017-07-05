@@ -1,0 +1,8 @@
+{
+  "SoftVersion": "2014-06-30",
+  "accountSid": "0dd673420477aeec8f64ac597b1700a1",
+  "url": "https://api.ucpaas.com/{SoftVersion}/Accounts/{accountSid}/Messages/templateSMS",
+  "authToken": "dd3f270cd0fe42608b80cb9a639ee44f",
+  "appId": "786ca67be8f642929f1f5c387bca0ca1",
+  "templateId": "69429"
+}

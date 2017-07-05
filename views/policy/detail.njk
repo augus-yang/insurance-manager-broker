@@ -1,0 +1,99 @@
+{% extends 'layouts/detail.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>保单无忧</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/policy/page">保单托管</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>保单托管</span>
+</li>
+{% endblock %}
+
+{% block title %}保单托管{% endblock %}
+
+{% block note %}查看保单托管信息{% endblock %}
+
+{% block tab %}
+<li class="active">
+    <a href="#tab_1" data-toggle="tab">内容</a>
+</li>
+{% endblock %}
+
+{% block tabContent %}
+<div class="tab-pane active" id="tab_1">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet green box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>详细内容
+                    </div>
+                    <div class="actions">
+                        {% from "kits/audit.njk" import audit %}
+                        {{
+                            audit('/policy/' + bean.id + '/audit', '/policy/page')
+                        }}
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="row static-info">
+                        <div class="col-md-5 name">保单号</div>
+                        <div class="col-md-7 value">{{bean.policyNumber}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">投保人</div>
+                        <div class="col-md-7 value">{{bean.applicant}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">受保人</div>
+                        <div class="col-md-7 value">{{bean.insurant}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">联系方式</div>
+                        <div class="col-md-7 value">{{bean.mobile}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">保险公司</div>
+                        <div class="col-md-7 value">{{bean.insuranceCompany}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">产品名称</div>
+                        <div class="col-md-7 value">{{bean.productName}}</div>
+                    </div>
+
+                    <div class="row static-info">
+                        <div class="col-md-5 name">托管状态</div>
+                        <div class="col-md-7 value">{{bean.status}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">托管有效期</div>
+                        <div class="col-md-7 value">{{bean.validity}}</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">上传保单</div>
+                        <div class="col-md-7 value">
+                            {% from 'kits/preview.njk' import preview %}
+                            {{
+                                preview(bean.policyGeneralImg)
+                            }}
+                            {% from 'kits/preview.njk' import preview %}
+                            {{
+                                preview(bean.policyDetailImg)
+                            }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/js/policy/detail.js"></script>
+{% endblock %}

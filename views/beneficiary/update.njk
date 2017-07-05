@@ -1,0 +1,54 @@
+{% extends 'layouts/form.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>全民经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/order/page">订单管理</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/insuranceOrder/update/{{bean.orderId}}">保险下单更新</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>受益人更新</span>
+</li>
+{% endblock %}
+
+{% block title %}受益人更新{% endblock %}
+
+{% block note %}更新受益人{% endblock %}
+
+{% block group %}
+<input type="hidden" name="id" value="{{bean.id}}"/>
+<input type="hidden" name="insuranceOrderId" value="{{bean.insuranceOrderId}}"/>
+<div class="form-group  margin-top-20">
+    <label class="control-label col-md-3">受益人
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="name" autocomplete="off" value="{{bean.name}}"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受益比例
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="scale" autocomplete="off" value="{{bean.scale}}"/>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/js/beneficiary/update.js"></script>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'layouts/form.njk' %}
+
+{% block breadcrumb %}
+<li>
+    <span>全民经纪</span>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/order/update">订单管理</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <a href="/insuranceOrder/update/{{insuranceOrderId}}">保险下单更新</a>
+    <i class="fa fa-circle"></i>
+</li>
+<li>
+    <span>添加受益人</span>
+</li>
+{% endblock %}
+
+{% block title %}添加受益人{% endblock %}
+
+{% block note %}受益人添加{% endblock %}
+
+{% block group %}
+<input type="hidden" name="insuranceOrderId" value="{{insuranceOrderId}}"/>
+<div class="form-group  margin-top-20">
+    <label class="control-label col-md-3">受益人
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="name" autocomplete="off"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3">受益比例
+        <span class="required">*</span>
+    </label>
+    <div class="col-md-4">
+        <div class="input-icon right">
+            <i class="fa"></i>
+            <input type="text" class="form-control" name="scale" autocomplete="off"/>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/js/beneficiary/create.js"></script>
+{% endblock %}

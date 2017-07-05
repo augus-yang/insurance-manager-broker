@@ -1,0 +1,9 @@
+{
+  "database": "frank",
+  "username": "frank",
+  "password": "frank_123098_mbpop",
+  "host": "localhost",
+  "port": 3306,
+  "dialect": "mysql",
+  "timezone": "+08:00"
+}
